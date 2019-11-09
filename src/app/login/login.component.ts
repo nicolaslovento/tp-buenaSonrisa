@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { CloudFirestoreService } from '../servicios/cloud-firestore.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,13 +15,15 @@ export class LoginComponent implements OnInit {
   clave:string="";
   claveRepetida:string="";
 
-
-
-
   mostrarRegistro=false;
   mostrarError=false;
   error="";
-  constructor() { }
+
+
+  constructor(
+    private dbService:CloudFirestoreService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     
@@ -168,10 +172,31 @@ export class LoginComponent implements OnInit {
 
   }
 
+  redireccionar(usuario:any){
+    switch(usuario.perfil){
+      case 'administrador':
+        this.router.navigateByUrl('menu-admin');
+      break;
+      case 'cliente':
+        this.router.navigateByUrl('menu-cliente');
+      break;
+      case 'especialista':
+        this.router.navigateByUrl('menu-especialista');
+      break;
+      
+    }
+  }
+
   login(){
    
     if(!this.verificarErrorLogin()){
-      alert("bienvenido");
+      this.dbService.verificarUsuario(this.correo,this.clave).then((user)=>{
+        console.log(user);
+        this.redireccionar(user);
+      }).catch((error)=>{
+        this.error=error;
+        this.mostrarError=true;
+      });
     }
 
   }
