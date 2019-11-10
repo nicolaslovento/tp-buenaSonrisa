@@ -1,1 +1,42 @@
-<p>cliente works!</p>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<div class="screen">
+<div  class="toolbar">
+    <button class="btn btn-primary" (click)="this.router.navigateByUrl('')"><span><i class="fas fa-reply"></i></span></button>
+    <div align="center" class="titulo" ><label > Menu Cliente</label>  </div>  
+    <div class="btnSalir" (click)="this.router.navigateByUrl('')"><button class="btn btn-danger"><span>Cerrar sesión<i class="fas fa-sign-out-alt"></i></span></button></div>
+</div>
+
+<div class="container">
+
+    
+<div class="cards">
+    <div class="row">
+
+      <div class="col-sm">
+        <div class="card" >
+            <img src="../../../assets/imagenes/turno-cliente.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Solicitar Turno</h5>
+              <p class="card-text">Aquí podra obtener turno y elegir su especialista de confianza.</p>
+              <button (click)="this.router.navigateByUrl('alta-turno')" class="btn btn-warning">Click aquí </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+                <div class="card" >
+                    <img src="../../../assets/imagenes/verTurnos-cliente.png" class="card-img-top"  salt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Ver turnos</h5>
+                      <p class="card-text">Aquí podrá ver sus turnos.</p>
+                      <button (click)="this.router.navigateByUrl('ver-turnos')" class="btn btn-primary">Click aquí </button>
+                    </div>
+                  </div>
+                </div>
+        
+
+    </div>
+  </div>
+</div>
+  
+</div>

@@ -18,6 +18,9 @@ export class AltasComponent implements OnInit {
   mostrarError=false;
   error="";
   file:FileList;
+  usuarioNuevo=null;
+
+
   constructor(
     private router:Router,
     private serviceFirestore:CloudFirestoreService,
@@ -110,23 +113,62 @@ export class AltasComponent implements OnInit {
    
     if(!this.verificarErrorRegistro()){
 
-     
       
+      switch(this.tipo){
+        
+        case "especialista":
+            
+            this.usuarioNuevo={
+              nombre:this.nombre,
+              apellido:this.apellido,
+              correo:this.correo,
+              clave:this.clave,
+              tipo:this.tipo,
+              foto:null,
+              ingresos:[],
+              ocupado:false,
+              turnos:[],
+              turnosRealizados:0
+            }
+
+          break;
+        case "recepcionista":
+
+            this.usuarioNuevo={
+              nombre:this.nombre,
+              apellido:this.apellido,
+              correo:this.correo,
+              clave:this.clave,
+              tipo:this.tipo,
+              foto:null,
+              
+
+            }
+
+          break;
+        case "cliente":
+
+            this.usuarioNuevo={
+              nombre:this.nombre,
+              apellido:this.apellido,
+              correo:this.correo,
+              clave:this.clave,
+              tipo:this.tipo,
+              foto:null,
+              turnos:[],
+              reseñas:[]
+            }
+
+          break;
+      }
 
 
-        let usuarioNuevo={
-          nombre:this.nombre,
-          apellido:this.apellido,
-          correo:this.correo,
-          clave:this.clave,
-          tipo:this.tipo,
-          foto:null
-        }
+        
 
         this.obtenerLink().then(async(link)=>{
           
-          usuarioNuevo.foto=link;
-          this.serviceFirestore.cargarUsuario(usuarioNuevo).then(()=>{
+          this.usuarioNuevo.foto=link;
+          this.serviceFirestore.cargarUsuario(this.usuarioNuevo).then(()=>{
           
             this.limpiarForm();
             

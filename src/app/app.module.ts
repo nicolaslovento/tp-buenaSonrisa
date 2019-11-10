@@ -15,6 +15,7 @@ import { ClienteComponent } from './paginas/cliente/cliente.component';
 import { EspecialistaComponent } from './paginas/especialista/especialista.component';
 import { AltasComponent } from './paginas/administrador/altas/altas.component';
 import { EstadisticasComponent } from './paginas/administrador/estadisticas/estadisticas.component';
+import { AltaTurnoComponent } from './paginas/cliente/alta-turno/alta-turno.component';
 
 //import {HttpClientModule} from '@angular/common/http';
 
@@ -38,6 +39,7 @@ var firebaseConfig = {
     EspecialistaComponent,
     AltasComponent,
     EstadisticasComponent,
+    AltaTurnoComponent,
     
   ],
   imports: [

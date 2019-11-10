@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import { map } from 'rxjs/internal/operators/map';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +15,7 @@ export class CloudFirestoreService {
     return new Promise((resolve,rejected)=>{
 
       this.dbFirestore.collection('usuarios').doc(correo).valueChanges().subscribe((user:any)=>{
+        console.log(user);
         if(user){
 
           if(user.clave==clave){
@@ -56,25 +57,25 @@ cargarUsuario(usuarioNuevo:any){
 }
 
 //Cargar cliente a la bd
-cargarCliente(usuarioNuevo:any) {
+traerEspecialistas() {
+  let usuarios=new Array();
   return new Promise((resolve,rejected)=>{
-
-    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
-    
-    nombre:usuarioNuevo.nombre,
-    apellido:usuarioNuevo.apellido,
-    dni:usuarioNuevo.dni,
-    foto:usuarioNuevo.foto,
-    clave:usuarioNuevo.clave,
-    perfil:"cliente",
-
-  }).then(()=>{
-    resolve(usuarioNuevo);
-  }).catch((error)=>{
-    rejected(error);
-  });
+  this.dbFirestore.collection('usuarios').get().subscribe((user)=>{
+    user.docs.map(user=>{
+      if(user.data().perfil=="especialista"){
+        usuarios.push(user.data());
+      }
+      
+    });
+  })
+  resolve(usuarios);
 })
+
 }
+
+
+
+
 
 //Cargar cliente anonimo a la bd
 cargarClienteAnonimo(usuarioNuevo:any) {
@@ -119,4 +120,9 @@ cargarProducto(productoNuevo:any) {
 })
 }
 
+}
+
+export interface Especialista{
+  
+  correo:string;
 }

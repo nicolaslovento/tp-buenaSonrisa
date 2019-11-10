@@ -6,6 +6,7 @@ import { EspecialistaComponent } from './paginas/especialista/especialista.compo
 import { ClienteComponent } from './paginas/cliente/cliente.component';
 import { AltasComponent } from './paginas/administrador/altas/altas.component';
 import { EstadisticasComponent } from './paginas/administrador/estadisticas/estadisticas.component';
+import { AltaTurnoComponent } from './paginas/cliente/alta-turno/alta-turno.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   
 //cliente
   {path:'menu-cliente',component:ClienteComponent},
-
+  {path:'alta-turno',component: AltaTurnoComponent},
+ 
   //especialista
   {path:'menu-especialista',component:EspecialistaComponent},
   

@@ -112,6 +112,7 @@ export class LoginComponent implements OnInit {
         console.log(user);
         this.redireccionar(user);
       }).catch((error)=>{
+        
         this.error=error;
         this.mostrarError=true;
       });
