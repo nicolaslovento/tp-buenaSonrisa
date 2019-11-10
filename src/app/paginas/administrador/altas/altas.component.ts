@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
+import { CloudStorageService } from 'src/app/servicios/cloud-storage.service';
 
 @Component({
   selector: 'app-altas',
@@ -14,7 +17,12 @@ export class AltasComponent implements OnInit {
   tipo="";
   mostrarError=false;
   error="";
-  constructor() { }
+  file:FileList;
+  constructor(
+    private router:Router,
+    private serviceFirestore:CloudFirestoreService,
+    private serviceStorage:CloudStorageService
+    ) { }
 
   ngOnInit() {
   }
@@ -96,11 +104,72 @@ export class AltasComponent implements OnInit {
 
   }
 
+  
+
   registrar(){
-    
+   
     if(!this.verificarErrorRegistro()){
-      alert("bienvenido");
-    }
-  }
+
+     
+      
+
+
+        let usuarioNuevo={
+          nombre:this.nombre,
+          apellido:this.apellido,
+          correo:this.correo,
+          clave:this.clave,
+          tipo:this.tipo,
+          foto:null
+        }
+
+        this.obtenerLink().then(async(link)=>{
+          
+          usuarioNuevo.foto=link;
+          this.serviceFirestore.cargarUsuario(usuarioNuevo).then(()=>{
+          
+            this.limpiarForm();
+            
+          
+        }).catch((error)=>{
+          
+          console.log(error);
+        });
+          
+        })
+
+
+        
+      }
+    
+
+}
+
+limpiarForm(){
+  this.nombre="";
+  this.apellido="";
+  this.correo="";
+  this.clave="";
+  
+}
+
+
+
+fileSubido(event){
+  this.file=event.target.files;
+  console.log(this.file);
+  
+}
+
+async obtenerLink(){
+  return new Promise((resolve,rejected)=>{
+    this.serviceStorage.subirArchivo(this.file[0]).then((link)=>{
+      resolve(link);
+    });
+  })
+ 
+}
+
+
 
 }

@@ -34,19 +34,18 @@ export class CloudFirestoreService {
   
 
 /*carga un dueño o supervisor a la bd, su id será el dni->(también lo tienen los clientes y empleados)*/  
-cargarDueñoOSupervisor(usuarioNuevo:any){
+cargarUsuario(usuarioNuevo:any){
 
     return new Promise((resolve,rejected)=>{
 
-      this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
+      this.dbFirestore.collection("usuarios").doc(usuarioNuevo.correo).set({
       
-      nombre:usuarioNuevo.nombre,
-      apellido:usuarioNuevo.apellido,
-      dni:usuarioNuevo.dni,
-      cuil:usuarioNuevo.cuil,
-      foto:usuarioNuevo.foto,
-      perfil:usuarioNuevo.perfil,
-      clave:usuarioNuevo.clave,
+        nombre:usuarioNuevo.nombre,
+        apellido:usuarioNuevo.apellido,
+        correo:usuarioNuevo.correo,
+        clave:usuarioNuevo.clave,
+        tipo:usuarioNuevo.tipo,
+        foto:usuarioNuevo.foto
 
     }).then(()=>{
       resolve(usuarioNuevo);

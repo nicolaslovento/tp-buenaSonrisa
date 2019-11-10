@@ -29,91 +29,9 @@ export class LoginComponent implements OnInit {
     
   }
 
-  verificarErrorRegistro(){
+  
 
-    let errores=0;
-    let vacios=0;
-
-    if(this.nombre==""){
-
-      this.error="Debe ingresar su nombre.";
-      vacios++;
-      
-    }
-
-    if(this.apellido==""){
-
-      this.error="Debe ingresar su apellido.";
-      vacios++;
-      
-    }
-
-    if(this.correo==""){
-
-      this.error="Debe ingresar un correo.";
-      vacios++;
-      
-    }
-
-    if(this.claveRepetida==""){
-
-      this.error="Debe ingresar una clave.";
-      vacios++;
-      
-    }
-
-    if(this.clave==""){
-
-      this.error="Debe ingresar una clave.";
-      vacios++;
-      
-    }
-
-    if(this.correo.indexOf('@')==-1){
-
-      this.error="El correo debe tener un formato válido.";
-      errores++;
-      
-    }
-
-    if(this.clave.length>0 && this.clave.length<6){
-
-      this.error="La clave debe tener al menos 6 dígitos.";
-      errores++;
-      
-    }
-
-    if(this.clave!=this.claveRepetida){
-
-      this.error="La claves deben ser iguales.";
-      errores++;
-      
-    }
-
-    
-    if(vacios>=2){
-      this.mostrarError=true;
-      this.error="No puede haber campos vacíos.";
-      return true;
-    }
-
-    if(vacios==1){
-      this.mostrarError=true;
-      
-      return true;
-    }
-
-
-
-    if(errores>0){
-      this.mostrarError=true;
-      return true;
-    }
-    
-
-  }
-
-  verificarErrorLogin(){
+  verificarError(){
 
     let errores=0;
     let vacios=0;
@@ -189,7 +107,7 @@ export class LoginComponent implements OnInit {
 
   login(){
    
-    if(!this.verificarErrorLogin()){
+    if(!this.verificarError()){
       this.dbService.verificarUsuario(this.correo,this.clave).then((user)=>{
         console.log(user);
         this.redireccionar(user);
@@ -201,12 +119,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  registrar(){
-    
-    if(!this.verificarErrorRegistro()){
-      alert("bienvenido");
-    }
-  }
+  
 
 
 }

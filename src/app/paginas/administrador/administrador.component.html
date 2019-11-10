@@ -1,9 +1,15 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<div class="screen">
+<div  class="toolbar">
+    <button class="btn btn-primary" (click)="this.router.navigateByUrl('')"><span><i class="fas fa-reply"></i></span></button>
+    <div align="center" class="titulo" ><label > Menu Administrador</label>  </div>  
+    <div class="btnSalir" (click)="this.router.navigateByUrl('')"><button class="btn btn-danger"><span>Cerrar sesión<i class="fas fa-sign-out-alt"></i></span></button></div>
+</div>
+
 <div class="container">
 
-    <div class="row" class="toolbar">
-            
-    </div>
-
+    
+<div class="cards">
     <div class="row">
 
       <div class="col-sm">
@@ -22,7 +28,7 @@
                     <img src="../../../assets/imagenes/estadisticas-admin.png" class="card-img-top"  salt="...">
                     <div class="card-body">
                       <h5 class="card-title">Estadísticas</h5>
-                      <p class="card-text">Aquí podrá bver estadíticas de los empleados, turnos y especialidades.</p>
+                      <p class="card-text">Aquí podrá ver estadíticas de los empleados, turnos y especialidades.</p>
                       <button (click)="this.router.navigateByUrl('estadisticas-admin')" class="btn btn-primary">Click aquí </button>
                     </div>
                   </div>
@@ -30,7 +36,7 @@
         
 
     </div>
-
+  </div>
 </div>
   
-
+</div>

@@ -16,6 +16,8 @@ import { EspecialistaComponent } from './paginas/especialista/especialista.compo
 import { AltasComponent } from './paginas/administrador/altas/altas.component';
 import { EstadisticasComponent } from './paginas/administrador/estadisticas/estadisticas.component';
 
+//import {HttpClientModule} from '@angular/common/http';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyAN3Q11LmMijAus80x9yZBfyMAF2mbP9pA",
@@ -46,6 +48,7 @@ var firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
     AngularFirestoreModule,
+    //HttpClientModule
     
   ],
   providers: [],
